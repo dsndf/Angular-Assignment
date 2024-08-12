@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "email": "user1@example.com",
+      "password": "password123",
+      "phone": "",
+      "fullname": "John Doe",
+      "organizationName": "Org1",
+      "organizationId": "Org1",
+      "designation": "Engineer",
+      "birthDate": "1990-01-01",
+      "city": "New York",
+      "pincode": 10001,
+      "dob":"19-09-2002"
+    }
+  ],
+  "organizations": ["Org1", "Org2", "Org3", "Org4"],
+  "organizationsId": ["Org1", "Org2", "Org3", "Org4"],
+  "designations": ["Engineer", "Manager", "Analyst", "Consultant", "Developer"]
+}

@@ -1,0 +1,73 @@
+<div
+  class="flex justify-between items-center bg-white rounded-lg overflow-hidden w-full h-full"
+>
+  <app-side-layout
+    class="h-full w-[45%] flex flex-col justify-between bg-[#def0ff] pb-24 pt-8 px-6"
+  ></app-side-layout>
+  <div
+    class="w-[55%] h-full bg-white p-16 flex flex-col justify-center items-start"
+  >
+    @if(!isAuthOnLogin){
+    <form
+      action=""
+      [formGroup]="loginForm!"
+      class="w-[75%]"
+      (ngSubmit)="onSubmit(loginForm!)"
+    >
+      <h3 class="text-[22px] font-semibold mb-5">{{ welcomeMessage }}</h3>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Entered Email ID
+        </label>
+        <input
+          placeholder="Enter Email ID"
+          formControlName="emailOrPhoneNo"
+          class="p-3 mt-1 text-[14px] font-medium bg-blue-100 rounded-2xl w-full"
+        />
+        <p
+          *ngIf="emailOrPhoneNo?.errors"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          {{emailOrPhoneNo.errors?.[0]}}
+        </p>
+      </div>
+
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Enter Password</label
+        >
+        <input
+          placeholder="Enter your password"
+          type="password"
+          formControlName="password"
+          class="p-3 mt-1 text-[14px] font-medium bg-blue-100 rounded-2xl w-full"
+        />
+        <p
+          *ngIf="password?.errors"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          {{password.errors?.[0]}}
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="emailOrPhoneNo.invalid || password.invalid"
+        class="w-full mt-1 bg-blue-600 text-white p-3 rounded-2xl"
+      >
+        Next
+      </button>
+    </form>
+    } @else{
+    <div
+      class="flex flex-col justify-center items-center gap-2  w-full h-full"
+    >
+      <img src="green.svg" alt="" />
+      <h3 class="mt-1 font-medium text-[22px]">Logging you in...</h3>
+      <p class="text-gray-400">
+        Kindly wait as we are curating the data accordingly.
+      </p>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,189 @@
+<div
+  class="flex justify-between items-center bg-white rounded-lg  w-full h-full"
+>
+  <app-side-layout
+    class="h-full w-[45%] flex flex-col justify-between bg-[#def0ff] pb-24 pt-8 px-6"
+  ></app-side-layout>
+  <div
+    class="w-[55%] h-full bg-white p-16 flex flex-col justify-center items-start"
+  >
+    <h3
+      [hidden]="tab === 1 || afterSignUp"
+      (click)="goBackHandler()"
+      class="cursor-pointer text-blue-700 text-xl mb-1"
+    >
+      Go Back
+    </h3>
+    @if(!afterSignUp){
+    <form action="" class="w-[75%]" [formGroup]="signupForm!">
+      <h3 class="text-2xl font-semibold">Create Account</h3>
+      <div
+        class="flex justify-start gap-2 items-center py-4 w-full"
+        aria-label="tab-switchers"
+      >
+        <div class="p-1 bg-blue-700 w-48 rounded-lg" aria-label="tab-1"></div>
+        @if(tab===2){
+        <div class="p-1 bg-blue-700 w-48 rounded-lg" aria-label="tab-1"></div>
+        } @else{
+        <div class="p-1 bg-gray-300 w-48 rounded-lg" aria-label="tab-1"></div>
+        }
+      </div>
+
+      @if(tab===2){
+
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Organisation-name</label
+        >
+        <input
+          formControlName="organizationName"
+          placeholder="Lorem003@gmail.com"
+          type="text"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+        <p
+          *ngIf="organizationName.errors"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          {{organizationName.errors?.[0]}}
+        </p>
+      </div>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Organisation-id</label
+        >
+        <input
+          formControlName="organizationId"
+          placeholder="Organization id"
+          type="text"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+        <p
+          *ngIf="organizationId.errors"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          {{organizationId.errors?.[0]}}
+        </p>
+      </div>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Designation</label
+        >
+        <select
+          formControlName="designation"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+          name=""
+          id=""
+        >
+          <option value="">Choose designation</option>
+          <option *ngFor="let item of designations" [value]="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Birth date</label
+        >
+        <input
+          formControlName="dob"
+          placeholder="Lorem003@gmail.com"
+          type="date"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+      </div>
+
+      <div class="w-full flex justify-between gap-4 items-center">
+        <div class="flex flex-col justify-start mb-5">
+          <label class="text-blue-700 text-[15px] font-semibold" for=""
+            >City</label
+          >
+          <input
+            formControlName="city"
+            placeholder="Lorem003@gmail.com"
+            type="text"
+            class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+          />
+        </div>
+        <div class="flex flex-col justify-start mb-5">
+          <label class="text-blue-700 text-[15px] font-semibold" for=""
+            >Pincode</label
+          >
+          <input
+            formControlName="pincode"
+            placeholder="Lorem003@gmail.com"
+            type="number"
+            class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+          />
+          <p
+            *ngIf="pincode.errors"
+            class="mt-1 text-red-500 font-medium text-[14px]"
+          >
+            {{pincode.errors?.[0]}}
+          </p>
+        </div>
+      </div>
+      } @else{
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Enter Email or Mobile no.</label
+        >
+        <input
+          formControlName="emailOrPhoneNo"
+          placeholder="Lorem003@gmail.com"
+          type="text"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+        <p
+          *ngIf="emailOrPhoneNo.errors"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          {{emailOrPhoneNo.errors?.[0]}}
+        </p>
+      </div>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Full name</label
+        >
+        <input
+          formControlName="fullname"
+          placeholder="Full name"
+          type="text"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+      </div>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Create Password</label
+        >
+        <input
+          formControlName="password"
+          placeholder="Password"
+          type="password"
+          class="p-3 mt-1 font-medium bg-blue-100 rounded-xl w-full"
+        />
+      </div>
+
+      }
+
+      <button
+        (click)="nextHandler($event)"
+        class="w-full rounded-2xl bg-blue-700 text-white py-3"
+      >
+        Next
+      </button>
+    </form>
+    } @else{
+    <div
+      class="flex flex-col justify-center items-center gap-2  w-full h-full"
+    >
+      <img src="green.svg" alt="" />
+      <h3 class="mt-1 font-medium text-[22px]">Welcome to Solvei8!.</h3>
+      <p class="text-gray-400 text-center">
+        Redirecting you to the Login screen. This might take a few seconds...
+      </p>
+    </div>
+    }
+  </div>
+</div>

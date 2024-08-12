@@ -1,0 +1,75 @@
+<div
+  class="flex justify-between items-center bg-white rounded-lg overflow-hidden w-full h-full"
+>
+  <app-side-layout
+    class="h-full w-[45%] flex flex-col justify-between bg-[#def0ff] pb-24 pt-8 px-6"
+  ></app-side-layout>
+  <div
+    class="w-[55%] h-full bg-white p-16 flex flex-col justify-center items-start"
+  >
+    <form
+      action=""
+      [formGroup]="welcomeForm!"
+      class="w-[75%]"
+      (ngSubmit)="onSubmit(welcomeForm!)"
+    >
+      <h3 class="text-[22px] font-semibold mb-5">Welcome</h3>
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Enter Email ID</label
+        >
+        <input
+          placeholder="Enter Email ID"
+          formControlName="email"
+          class="p-3 mt-1 text-[14px] font-medium bg-blue-100 rounded-2xl w-full"
+        />
+        <p
+          *ngIf="emailError.required && email.touched"
+          class="mt-1 text-red-500 font-medium text-[14px]"
+        >
+          Email is required
+        </p>
+        <p
+          *ngIf="emailError.invalidEmail"
+          class="text-red-500 font-medium text-[14px]"
+        >
+          Please Enter the valid Email ID
+        </p>
+      </div>
+       <br />
+      <p class="text-gray-400 font-medium">( OR )</p>
+      <br />
+      <div class="flex flex-col justify-start mb-5">
+        <label class="text-blue-700 text-[15px] font-semibold" for=""
+          >Enter Mobile no.</label
+        >
+        <input
+          placeholder="91+"
+          type="number"
+          formControlName="mobileNumber"
+          class="p-3 mt-1 text-[14px] font-medium bg-blue-100 rounded-2xl w-full"
+        />
+        <p
+        *ngIf="mobileNumberError.required && mobileNumber.touched"
+        class="mt-1 text-red-500 font-medium text-[14px]"
+      >
+        Mobile no. is required
+      </p>
+      <p
+        *ngIf="mobileNumberError.invalidMobileNumber"
+        class="text-red-500 font-medium text-[14px]"
+      >
+        Please Enter the valid Email ID
+      </p>
+      </div>
+      
+      <button
+        type="submit"
+        [disabled] ="email.invalid && mobileNumber.invalid"
+        class="w-full mt-1 bg-blue-600 text-white p-3 rounded-2xl"
+      >
+        Next
+      </button>
+    </form>
+  </div>
+</div>
